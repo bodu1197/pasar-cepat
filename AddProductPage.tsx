@@ -4,7 +4,7 @@ import type { Page } from './App';
 import type { NewProductInfo, Product, UpdatedProductInfo } from './types';
 import { ChevronLeftIcon } from './components/Icons';
 import { categories, locations } from './services/filterData';
-import { convertToWebP } from '../utils/imageConverter';
+import { convertToWebP } from './utils/imageConverter';
 import { supabase } from '../services/supabase';
 
 interface AddProductPageProps {
