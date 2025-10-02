@@ -230,6 +230,7 @@ const App: React.FC = () => {
 
   const renderContent = () => {
     const pageName = typeof currentPage === 'string' ? currentPage : currentPage.page;
+    console.log('DEBUG: Current Page:', pageName); // Debug log
 
     switch (pageName) {
       case 'login':

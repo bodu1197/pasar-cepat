@@ -17,6 +17,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordPageProps> = ({ onNaviga
     const [sessionLoading, setSessionLoading] = useState(true); // New loading state
 
     useEffect(() => {
+        console.log('DEBUG: UpdatePasswordPage loaded.'); // Debug log
         const handleSession = async () => {
             setSessionLoading(true);
             const { data: { session } } = await supabase.auth.getSession();
