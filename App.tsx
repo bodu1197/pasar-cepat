@@ -66,6 +66,21 @@ const App: React.FC = () => {
   const [productDistances, setProductDistances] = useState<Record<number, number>>({});
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
+  // Initialize currentPage based on URL pathname
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path === '/update-password') {
+      setCurrentPage('updatePassword');
+    } else if (path === '/forgot-password') {
+      setCurrentPage('forgotPassword');
+    } else if (path === '/login') {
+      setCurrentPage('login');
+    } else if (path === '/signup') {
+      setCurrentPage('signup');
+    } else {
+      setCurrentPage('home');
+    }
+  }, []);
 
   useEffect(() => {
     const fetchProducts = async () => {
