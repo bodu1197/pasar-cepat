@@ -1,0 +1,7 @@
+{
+  "name": "Pasar Cepat",
+  "description": "A mobile-first marketplace for used goods in Indonesia. It finds your location to show you the best deals nearby, ensuring a fast and easy shopping experience.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
