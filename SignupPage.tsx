@@ -121,7 +121,7 @@ export const SignupPage: React.FC<SignupPageProps> = ({ onNavigate }) => {
                                 <RequirementItem met={passwordRequirements.hasLowerCase} text="Setidaknya satu huruf kecil" />
                                 <RequirementItem met={passwordRequirements.hasNumber} text="Setidaknya satu angka" />
                                 <RequirementItem met={passwordRequirements.hasSpecialChar} text="Setidaknya satu karakter khusus (!@#$%^&*)" />
-                                <li className={\`flex items-center text-sm \${passwordRequirements.meetsCharTypeVariety ? 'text-emerald-400' : 'text-gray-400'}\`}>
+                                <li className={"flex items-center text-sm " + (passwordRequirements.meetsCharTypeVariety ? 'text-emerald-400' : 'text-gray-400')}>
                                     {passwordRequirements.meetsCharTypeVariety ? <CheckIcon className="w-4 h-4 mr-2" /> : <XMarkIcon className="w-4 h-4 mr-2" />}
                                     Minimal 3 dari 4 jenis karakter (huruf besar, kecil, angka, khusus)
                                 </li>
