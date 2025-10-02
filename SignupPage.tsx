@@ -21,7 +21,7 @@ export const SignupPage: React.FC<SignupPageProps> = ({ onNavigate }) => {
         const hasUpperCase = /[A-Z]/.test(password);
         const hasLowerCase = /[a-z]/.test(password);
         const hasNumber = /[0-9]/.test(password);
-        const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+        const hasSpecialChar = /[^a-zA-Z0-9]/.test(password);
 
         // At least 3 out of 4 character types (upper, lower, number, special)
         const charTypeCount = [hasUpperCase, hasLowerCase, hasNumber, hasSpecialChar].filter(Boolean).length;

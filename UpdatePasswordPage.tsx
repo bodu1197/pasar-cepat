@@ -37,7 +37,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordPageProps> = ({ onNaviga
         const hasUpperCase = /[A-Z]/.test(password);
         const hasLowerCase = /[a-z]/.test(password);
         const hasNumber = /[0-9]/.test(password);
-        const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};inaly:".<>\]/.test(password);
+        const hasSpecialChar = /[^a-zA-Z0-9]/.test(password);
 
         const charTypeCount = [hasUpperCase, hasLowerCase, hasNumber, hasSpecialChar].filter(Boolean).length;
         const meetsCharTypeVariety = charTypeCount >= 3;
