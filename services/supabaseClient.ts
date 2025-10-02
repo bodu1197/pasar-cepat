@@ -4,25 +4,20 @@ import { dataURLtoBlob } from '../utils/imageConverter';
 
 // --- Auth Functions ---
 export const signUp = async (name: string, email: string, password: string) => {
-    const { data: authData, error: authError } = await supabase.auth.signUp({ email, password });
+    const { data: authData, error: authError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+            data: {
+                name: name  // Trigger가 이 데이터를 사용하여 프로필 생성
+            }
+        }
+    });
+    
     if (authError) throw authError;
     if (!authData.user) throw new Error("Signup successful, but no user data returned.");
 
-    // Create a profile for the new user
-    const { error: profileError } = await supabase.from('profiles').insert({
-        id: authData.user.id,
-        name: name,
-        email: email,
-        avatar_url: `https://i.pravatar.cc/150?u=${authData.user.id}`, // Default avatar
-        wishlist: [],
-    });
-
-    if (profileError) {
-        // Optional: In a real app, you might want to delete the auth user if profile creation fails.
-        console.error("Error creating profile:", profileError);
-        throw profileError;
-    }
-
+    // Trigger가 자동으로 프로필을 생성하므로 여기서는 프로필을 생성하지 않음
     return authData.user;
 };
 
