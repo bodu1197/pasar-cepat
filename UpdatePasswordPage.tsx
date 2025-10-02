@@ -14,14 +14,24 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordPageProps> = ({ onNaviga
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [session, setSession] = useState<any>(null);
+    const [sessionLoading, setSessionLoading] = useState(true); // New loading state
 
     useEffect(() => {
-        supabase.auth.getSession().then(({ data: { session } }) => {
+        const handleSession = async () => {
+            setSessionLoading(true);
+            const { data: { session } } = await supabase.auth.getSession();
             setSession(session);
-        });
+            setSessionLoading(false);
+
+            if (!session) {
+                setError('Sesi tidak valid atau kedaluwarsa. Silakan coba lagi dari awal.');
+            }
+        };
+        handleSession();
 
         const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
+            setSessionLoading(false); // Ensure loading is false after any auth state change
         });
 
         return () => {
@@ -96,6 +106,16 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordPageProps> = ({ onNaviga
         </li>
     );
 
+    if (sessionLoading) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[calc(100vh-5rem)] px-4">
+                <div className="w-full max-w-sm mx-auto overflow-hidden bg-gray-800 rounded-lg shadow-md py-8">
+                    <p className="text-center text-white">Memuat sesi...</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="flex flex-col items-center justify-center min-h-[calc(100vh-5rem)] px-4">
             <div className="w-full max-w-sm mx-auto overflow-hidden bg-gray-800 rounded-lg shadow-md">
@@ -151,7 +171,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordPageProps> = ({ onNaviga
                             <button
                                 type="submit"
                                 disabled={loading || !passwordRequirements.isStrongEnough || password !== confirmPassword || !session}
-                                className="w-full px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-600 focus:outline-none focus:ring focus:ring-emerald-300 focus:ring-opacity-50 disabled:bg-emerald-800 disabled:cursor-not-allowed"
+                                className="w-full px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-600 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-emerald-300"
                             >
                                 {loading ? 'Memproses...' : 'Atur Ulang Kata Sandi'}
                             </button>
