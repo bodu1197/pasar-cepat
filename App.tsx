@@ -12,6 +12,8 @@ import { Filters } from './components/Filters';
 import { categories, locations } from './services/filterData';
 import { LoginPage } from './LoginPage';
 import { SignupPage } from './SignupPage';
+import { ForgotPasswordPage } from './ForgotPasswordPage';
+import { UpdatePasswordPage } from './UpdatePasswordPage';
 import { ProductDetailPage } from './ProductDetailPage';
 import { AddProductPage } from './AddProductPage';
 import { MyPage } from './MyPage';
@@ -25,6 +27,8 @@ export type Page =
   | 'home' 
   | 'login' 
   | 'signup' 
+  | 'forgotPassword'
+  | 'updatePassword'
   | 'addProduct' 
   | 'editProduct'
   | 'myPage' 
@@ -232,6 +236,10 @@ const App: React.FC = () => {
         return <LoginPage onNavigate={navigateTo} onLoginSuccess={() => navigateTo('home')} />;
       case 'signup':
         return <SignupPage onNavigate={navigateTo} />;
+      case 'forgotPassword':
+        return <ForgotPasswordPage onNavigate={navigateTo} />;
+      case 'updatePassword':
+        return <UpdatePasswordPage onNavigate={navigateTo} />;
       case 'productDetail':
         if (typeof currentPage === 'object' && 'productId' in currentPage) {
             const product = products.find(p => p.id === currentPage.productId);
@@ -290,7 +298,7 @@ const App: React.FC = () => {
   };
 
   const pageName = typeof currentPage === 'string' ? currentPage : currentPage.page;
-  const hasFooter = !['login', 'signup', 'admin', 'chat', 'productDetail'].includes(pageName);
+  const hasFooter = !['login', 'signup', 'admin', 'chat', 'productDetail', 'forgotPassword', 'updatePassword'].includes(pageName);
 
 
   return (

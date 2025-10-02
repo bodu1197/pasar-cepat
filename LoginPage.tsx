@@ -65,7 +65,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
                         {error && <p className="mt-4 text-sm text-red-400 text-center">{error}</p>}
 
                         <div className="flex items-center justify-between mt-6">
-                            <button type="submit" disabled={loading} className="w-full px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-600 focus:outline-none focus:ring focus:ring-emerald-300 focus:ring-opacity-50 disabled:bg-emerald-800 disabled:cursor-not-allowed">
+                            <a onClick={() => onNavigate('forgotPassword')} className="text-xs text-gray-400 hover:underline cursor-pointer">Lupa Kata Sandi?</a>
+                            <button type="submit" disabled={loading} className="px-6 py-2 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-500 rounded-lg hover:bg-emerald-600 focus:outline-none focus:ring focus:ring-emerald-300 focus:ring-opacity-50 disabled:bg-emerald-800 disabled:cursor-not-allowed">
                                 {loading ? 'Memproses...' : 'Masuk'}
                             </button>
                         </div>
