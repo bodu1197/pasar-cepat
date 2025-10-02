@@ -18,9 +18,6 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordPageProps> = ({ onNaviga
     useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
             setSession(session);
-            if (!session) {
-                setError('Sesi tidak valid atau kedaluwarsa. Silakan coba lagi dari awal.');
-            }
         });
 
         const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
