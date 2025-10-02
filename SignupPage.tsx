@@ -65,7 +65,7 @@ export const SignupPage: React.FC<SignupPageProps> = ({ onNavigate }) => {
     };
 
     const RequirementItem: React.FC<{ met: boolean; text: string }> = ({ met, text }) => (
-        <li className={\`flex items-center text-sm \${met ? 'text-emerald-400' : 'text-gray-400'}\`}>
+        <li className={"flex items-center text-sm " + (met ? 'text-emerald-400' : 'text-gray-400')}>
             {met ? <CheckIcon className="w-4 h-4 mr-2" /> : <XMarkIcon className="w-4 h-4 mr-2" />}
             {text}
         </li>
@@ -129,7 +129,7 @@ export const SignupPage: React.FC<SignupPageProps> = ({ onNavigate }) => {
                         </div>
                          <div className="w-full mt-4">
                             <input 
-                                className={\`block w-full px-4 py-2 mt-2 text-gray-200 placeholder-gray-500 bg-gray-700 border \${confirmPassword && password !== confirmPassword ? 'border-red-500' : 'border-gray-600'} rounded-lg focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-emerald-300\`} 
+                                className={"block w-full px-4 py-2 mt-2 text-gray-200 placeholder-gray-500 bg-gray-700 border " + (confirmPassword && password !== confirmPassword ? 'border-red-500' : 'border-gray-600') + " rounded-lg focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-emerald-300"} 
                                 type="password" 
                                 placeholder="Konfirmasi Kata Sandi" 
                                 aria-label="Konfirmasi Kata Sandi"
